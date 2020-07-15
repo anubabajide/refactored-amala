@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'buyandsellBE.wsgi.application'
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8080'
+    'https://mutualenigmas.herokuapp.com/'
 ]
 
 # Database
@@ -133,10 +133,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'img'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'img'),
+# ]
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/api/products/img/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'img')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'img')
 # # Media download
 # MEDIA_ROOT = 
