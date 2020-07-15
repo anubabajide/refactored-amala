@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser, BasePermission, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAdminUser, BasePermission, IsAuthenticatedOrReadOnly
 from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
-from .models import Product, Interest
-from .serializers import ProductSerializer, InterestSerializer, UserSerializer
+from .models import Product, Interest, UserDetail
+from .serializers import ProductSerializer, InterestSerializer, UserSerializer, UserDetailSerializer
 
 # Create custom permission
 class PostOnlyPermissions(BasePermission):
@@ -49,7 +49,7 @@ class ProductViewSet(viewsets.ModelViewSet):
                 response = {'message': 'rating created', 'result': serializer.data}
                 return Response(response, status = status.HTTP_200_OK)
         else:
-            response = {'message': 'Please provide a product, email and location', 'result': serializer.data}
+            response = {'message': 'Please provide a product, email and location'}
             return Response(response, status = status.HTTP_400_BAD_REQUEST)
             
 
@@ -66,4 +66,36 @@ class InterestViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAdminUser,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (PostOnlyPermissions,)
+
+class UserModelViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (PostOnlyPermissions,)
+
+    def create(self, request=None):
+        if ('username' in request.data) and ('password' in request.data) and ('location' in request.data) and ('first_name' in request.data) and ('last_name' in request.data):
+            username = request.data['username']
+            password = request.data['password']
+            location = request.data['location']
+            first_name = request.data['first_name']
+            last_name = request.data['last_name']
+            try:
+                user = User.objects.create_user(username, 
+                                            email=username, 
+                                            password=password, 
+                                            first_name = first_name,
+                                            last_name = last_name)
+                serializer1 = UserSerializer(user, many=False)
+                user_detail = UserDetail.objects.create(user=user, location=location)
+                serializer2 = UserDetailSerializer(user_detail, many=False)
+                response = {'message': 'rating created', 'result': serializer1.data, 'location': serializer2.data}
+                return Response(response, status = status.HTTP_200_OK)
+            except:
+                response = {'message': 'User Exists'}
+                return Response(response, status = status.HTTP_400_BAD_REQUEST)
+        else:
+            response = {'message': 'Please provide all fields'}
+            return Response(response, status = status.HTTP_400_BAD_REQUEST)
