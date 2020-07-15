@@ -25,7 +25,7 @@ SECRET_KEY = '%8*7bca@tmixukal0y2ab6(^r3@%3yv@ci_pzw_9o_9*fvkw7%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://mutualenigma.herokuapp.com/']
+ALLOWED_HOSTS = [0.0.0.0]
 
 
 # Application definition
