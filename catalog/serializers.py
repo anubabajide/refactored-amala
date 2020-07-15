@@ -7,7 +7,6 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-        extra_kwargs = {'url':{'required': True}}
 
 class InterestSerializer(serializers.ModelSerializer):
     class Meta:

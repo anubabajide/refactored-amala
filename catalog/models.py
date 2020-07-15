@@ -6,7 +6,7 @@ class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.FloatField()
     description = models.TextField(max_length=300)
-    image_url = models.URLField()
+    image = models.ImageField(upload_to='img')
     location = models.TextField(max_length=80)
 
     def interest_count(self):
