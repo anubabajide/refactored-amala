@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'buyandsellBE.wsgi.application'
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-    'https://mutualenigmas.herokuapp.com/'
+    'https://mutualenigmas.herokuapp.com'
 ]
 
 # Database
