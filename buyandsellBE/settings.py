@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     'catalog',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,6 +75,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'buyandsellBE.wsgi.application'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8080'
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -125,4 +133,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'img'),
+]
+STATIC_URL = '/api/products/img/'
+
+# # Media download
+# MEDIA_ROOT = 
