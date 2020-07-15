@@ -4,9 +4,18 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAdminUser, BasePermission, IsAuthenticatedOrReadOnly
 from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from .models import Product, Interest, UserDetail
 from .serializers import ProductSerializer, InterestSerializer, UserSerializer, UserDetailSerializer
+
+# Custom token class
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        return Response({'token': token.key, 'id': token.user_id})
 
 # Create custom permission
 class PostOnlyPermissions(BasePermission):
