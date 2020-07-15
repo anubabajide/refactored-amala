@@ -16,7 +16,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
-    @action(methos=['POST'], detail=True)
+    @action(methods=['POST'], detail=True)
     def show_interest(self, request = None):
         if 'product' in request.data and 'email' in request.data and 'location' in request.data:
             product = Product.objects.get(id = pk)

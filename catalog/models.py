@@ -9,6 +9,11 @@ class Product(models.Model):
     image_url = models.URLField()
     location = models.TextField(max_length=80)
 
+    def interest_count(self):
+        interest = Interest.objects.filter(product = self)
+        count = len(interest)
+        return count
+
 class Interest(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     name = models.TextField(max_length=80)
