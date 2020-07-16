@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'catalog',
     'rest_framework',
     'rest_framework.authtoken',
@@ -137,8 +139,10 @@ USE_TZ = True
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'img'),
 # ]
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/api/products/img/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'img')
+MEDIA_URL = '/img/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'img')
 # # Media download
 # MEDIA_ROOT = 

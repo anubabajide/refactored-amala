@@ -8,7 +8,7 @@ class Product(models.Model):
     price = models.FloatField()
     description = models.TextField(max_length=300)
     short_description = models.TextField(max_length=30)
-    image = models.ImageField(upload_to='img')
+    image = models.ImageField(upload_to='images/')
     location = models.TextField(max_length=80)
 
     def interest_count(self):
