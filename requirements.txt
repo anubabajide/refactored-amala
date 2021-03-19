@@ -5,7 +5,7 @@ colorama==0.4.3
 cryptography==2.9.2
 Django==3.0.8
 django-cors-headers==3.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 ecdsa==0.15
 gunicorn==20.0.4
@@ -33,7 +33,7 @@ cryptography==2.9.2
 dj-database-url==0.5.0
 Django==3.0.8
 django-cors-headers==3.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 ecdsa==0.15
 gunicorn==20.0.4
@@ -61,7 +61,7 @@ cryptography==2.9.2
 dj-database-url==0.5.0
 Django==3.0.8
 django-cors-headers==3.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 ecdsa==0.15
 gunicorn==20.0.4
@@ -94,7 +94,7 @@ dj-database-url==0.5.0
 Django==3.0.8
 django-cloudinary-storage==0.2.3
 django-cors-headers==3.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 ecdsa==0.15
 gunicorn==20.0.4
